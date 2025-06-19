@@ -29,7 +29,6 @@ By the end of this project, you should be able to:
 - You are allowed to use the C standard library
 - The prototypes of all functions should be included in a header file called `monty.h`
 - All header files should be include guarded
-- You are expected to do the tasks in the order shown in the project
 
 ## Data Structures
 Use these data structures for this project:
