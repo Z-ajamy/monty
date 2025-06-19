@@ -1,6 +1,6 @@
 # Monty - Bytecode Interpreter
 
-![Monty](f845876e178fc5b62de14de04de2a3fa.jpg)
+![Monty](https://i.pinimg.com/736x/f8/45/87/f845876e178fc5b62de14de04de2a3fa.jpg)
 
 ## Description
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files. This project is part of the ALX Software Engineering program, focusing on implementing stacks and queues using doubly linked lists in C.
