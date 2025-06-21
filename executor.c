@@ -59,7 +59,7 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
         {
             if (!command_ptr->arg)
             {
-                fprintf(stderr, "L%d: usage: %s integer", linenum, fun_with_arg[i].opcode);
+                fprintf(stderr, "L%d: usage: %s integer\n", linenum, fun_with_arg[i].opcode);
                 return 0;
             }
             fun_with_arg[i].f(top, linenum);
