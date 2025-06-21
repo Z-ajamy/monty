@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     unsigned int linenum = 0, flag;
     ssize_t n;
     size_t i = 0;
-    char *path, *line = NULL;
+    char *line = NULL;
     command_t *command_ptr;
     stack_t *stack = NULL;
     FILE *fp;
@@ -19,11 +19,10 @@ int main(int argc, char *argv[])
         exit (EXIT_FAILURE);
     }
     
-    path = argv[1];
-    fp = fopen(path, "r");
+    fp = fopen(argv[1], "r");
     if (fp == NULL)
     {
-        fprintf(stderr, "Error: Can't open file %s\n", path);
+        fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
         exit (EXIT_FAILURE);
     }
     
