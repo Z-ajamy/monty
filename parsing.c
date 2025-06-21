@@ -5,14 +5,14 @@
  * @line: The input line
  * @line_number: Line number in the Monty file
  *
- * Return: Pointer to command_l struct or NULL on failure
+ * Return: Pointer to command_t struct or NULL on failure
  */
-command_l *parsing(char *line, int line_number)
+command_t *parsing(char *line, int line_number)
 {
     char *command, *arg;
-    command_l *command_ptr;
+    command_t *command_ptr;
 
-    command_ptr = (command_l *)malloc(sizeof(command_l));
+    command_ptr = (command_t *)malloc(sizeof(command_t));
     if (!command_ptr)
     {
         fprintf(stderr, "Error: malloc failed\n");
@@ -40,7 +40,7 @@ command_l *parsing(char *line, int line_number)
     strcpy(command_ptr->command, command);
 
     arg = strtok(NULL, " \t\n");
-    if (arg && arg[1] != '#')
+    if (arg && arg[0] != '#')
     {
         command_ptr->arg = (char *)malloc(strlen(arg) + 1);
         if (!command_ptr->arg)

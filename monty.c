@@ -1,30 +1,36 @@
 #include"monty.h"
 
-int main(int __attribute__((unused)) argv, char *argc[])
+global_vars_t g_vars = {0, 0};
+
+int main(int argc, char *argv[])
 {
-    unsigned int linenum = 1;
+    unsigned int linenum = 0, flag;
     ssize_t n;
     size_t i = 0;
     char *path, *line = NULL;
-    command_l *command_ptr;
-
+    command_t *command_ptr;
+    stack_t *stack = NULL;
     FILE *fp;
-    if (argv != 2)
+
+
+    if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
         exit (EXIT_FAILURE);
     }
     
-    path = argc[1];
+    path = argv[1];
     fp = fopen(path, "r");
     if (fp == NULL)
     {
-        fprintf(stderr, "Error: Can't open file <file>\n");
+        fprintf(stderr, "Error: Can't open file %s\n", path);
         exit (EXIT_FAILURE);
     }
     
     while (1)
     {
+        linenum++;
+        
         n = getline(&line, &i, fp);
         if (n == -1)
             break;
@@ -32,14 +38,26 @@ int main(int __attribute__((unused)) argv, char *argc[])
         command_ptr = parsing(line, linenum);
         if (!command_ptr)
             exit (EXIT_FAILURE);
-        printf("%d %s %s\n",command_ptr->line_number, command_ptr->command, command_ptr->arg);
-        linenum++;
+        if (!command_ptr->command)
+            continue;
+
+
+        flag = executor(&stack, command_ptr, linenum);
+            free(command_ptr->command);
+            free(command_ptr->arg);
+            free(command_ptr);
+
+        if (!flag)
+        {
+            free_stack(&stack);
+            free(line);
+            fclose(fp);
+            exit (EXIT_FAILURE);
+        }
     }
-    
+
+    free_stack(&stack);
     free(line);
-    free(command_ptr->command);
-    free(command_ptr->arg);
-    free(command_ptr);
     fclose(fp);
     return 0;
 }
