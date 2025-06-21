@@ -25,8 +25,11 @@ int isdigite(char *str)
 int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
 {
     int i = 0, flag = 1;
-    instruction_t arr[3] = {
+    instruction_t fun_with_arg[2] = {
         {"push", push},
+        {NULL, NULL}
+    };
+    instruction_t fun_no_arg[2] = {
         {"pall", pall},
         {NULL, NULL}
     };
@@ -39,11 +42,27 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     {
         g_vars.arg = atoi(command_ptr->arg);
     }
-    while (arr[i].opcode)
+    while (fun_no_arg[i].opcode)
     {
-        if (!strcmp(arr[i].opcode, command_ptr->command))
+        if (!strcmp(fun_no_arg[i].opcode, command_ptr->command))
         {
-            arr[i].f(top, linenum);
+            fun_no_arg[i].f(top, linenum);
+            flag = 0;
+            break;
+        }
+        i++;
+    }
+    i = 0;
+    while (fun_with_arg[i].opcode && flag)
+    {
+        if (!strcmp(fun_with_arg[i].opcode, command_ptr->command))
+        {
+            if (!command_ptr->arg)
+            {
+                fprintf(stderr, "L%d: usage: %s integer", linenum, fun_with_arg[i].opcode);
+                return 0;
+            }
+            fun_with_arg[i].f(top, linenum);
             flag = 0;
             break;
         }
