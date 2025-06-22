@@ -45,7 +45,7 @@ int isdigite(char *str)
  */
 int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
 {
-    int i = 0, flag = 1;
+    int i = 0, flag = 1, flage2 = 0;
 
     /** Array of opcodes that require an argument */
     instruction_t fun_with_arg[2] = {
@@ -62,7 +62,6 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     /** Validate the argument (if any) */
     if (!isdigite(command_ptr->arg))
     {
-        free(command_ptr->arg);
         g_vars.arg = NULL;
     }
     else
@@ -74,6 +73,7 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
             return (0);
         }
         strcpy(g_vars.arg, command_ptr->arg);
+        flage2 = 1;
     }
 
     /** Search for matching opcode in no-argument list */
@@ -114,6 +114,10 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     if (g_vars.status)
     {
         return (0);
+    }
+    if (flage2)
+    {
+        free(g_vars.arg);
     }
 
     return (1);
