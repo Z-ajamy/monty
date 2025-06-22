@@ -1,0 +1,25 @@
+#include "monty.h"
+
+void add(stack_t **stack, unsigned int line_number)
+{
+    stack_t *s;
+    int temp;
+
+    if (!stack)
+        return;
+    if (!*stack || !(*stack)->next)
+    {
+        fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+        g_vars.status = 1;
+        return;
+    }
+
+    
+    s = *stack;
+    temp = s->n;
+    *stack = (*stack)->next;
+    (*stack)->prev = NULL;
+    (*stack)->n = (*stack)->n + temp;
+
+    free(s);
+}
