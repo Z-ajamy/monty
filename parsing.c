@@ -29,7 +29,7 @@ command_t *parsing(char *line, int line_number)
     command = strtok(line, " \t\n");
 
     /** If empty line or comment line, return empty struct */
-    if (!command || command[0] == '#')
+    if (!command || command[0] == '#' || !strcmp(command, "nop"))
     {
         return (command_ptr);
     }
