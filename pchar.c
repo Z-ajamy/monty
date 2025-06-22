@@ -19,5 +19,5 @@ void pchar(stack_t **stack, unsigned int line_number)
         g_vars.status = 1;
         return;
     }
-    printf("%c", temp);
+    printf("%c\n", temp);
 }
