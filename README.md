@@ -216,15 +216,30 @@ All error messages should be printed to stderr and the program should exit with 
 ## Project Structure
 ```
 monty/
-├── monty.h           # Header file with prototypes and structures
-├── monty.c           # Main function and file handling
-├── stack_ops.c       # Stack operations (push, pop, pall, pint)
-├── arithmetic_ops.c  # Arithmetic operations (add, sub, div, mul, mod)
-├── string_ops.c      # String operations (pchar, pstr)
-├── rotation_ops.c    # Rotation operations (rotl, rotr)
-├── queue_ops.c       # Queue operations (stack, queue)
-├── utils.c           # Utility functions
-└── README.md         # This file
+├── README.md
+├── add.c
+├── div.c
+├── executor.c
+├── free_stack.c
+├── mod.c
+├── monty.c
+├── monty.h
+├── mul.c
+├── pall.c
+├── parsing.c
+├── pchar.c
+├── pint.c
+├── pop.c
+├── pstr.c
+├── push.c
+├── rotl.c
+├── rotr.c
+├── sub.c
+├── swap.c
+└── test
+    ├── README.md
+    ├── monty
+    └── test.m
 ```
 
 ## Testing
