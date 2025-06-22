@@ -54,8 +54,9 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     };
 
     /** Array of opcodes that do not require an argument */
-    instruction_t fun_no_arg[2] = {
+    instruction_t fun_no_arg[3] = {
         {"pall", pall},
+        {"pint", pint},
         {NULL, NULL}
     };
 
@@ -110,14 +111,15 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
         return (0);
     }
 
+    if (flage2)
+    {
+        free(g_vars.arg);
+    }
+
     /** If global status indicates error */
     if (g_vars.status)
     {
         return (0);
-    }
-    if (flage2)
-    {
-        free(g_vars.arg);
     }
 
     return (1);
