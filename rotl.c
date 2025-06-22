@@ -9,6 +9,11 @@ void rotl(stack_t **stack, unsigned int line_number)
 
 
     s = *stack;
+    if (!s)
+    {
+        return;
+    }
+    
     while (s->next)
         s = s->next;
     
