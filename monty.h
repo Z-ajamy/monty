@@ -53,7 +53,7 @@ typedef struct command_line
 
 /**
  * struct global_vars_s - Struct for holding global variables
- * @arg: Integer argument value (if needed)
+ * @arg: String argument value (if needed)
  * @status: Program status (success/failure)
  *
  * Description: Global variables used by the Monty interpreter
@@ -69,36 +69,94 @@ extern global_vars_t g_vars;
 
 /** Function Prototypes */
 
-/** Parses a line into command and argument */
+/**
+ * parsing - Parses a line into command and argument
+ */
 command_t *parsing(char *line, int line_number);
 
-/** Executes a parsed command */
+/**
+ * executor - Executes a parsed command
+ */
 int executor(stack_t **top, command_t *command_ptr, unsigned int linenum);
 
-/** Frees the entire stack */
+/**
+ * free_stack - Frees the entire stack
+ */
 void free_stack(stack_t **top);
 
-/** Pushes a new value onto the stack */
+/**
+ * push - Pushes a new value onto the stack
+ */
 void push(stack_t **top, unsigned int line_number);
 
-/** Prints all values on the stack */
+/**
+ * pall - Prints all values on the stack
+ */
 void pall(stack_t **stack, unsigned int line_number);
 
+/**
+ * isdigite - Checks if a string is a valid integer
+ */
 int isdigite(char *str);
 
+/**
+ * pint - Prints the value at the top of the stack
+ */
 void pint(stack_t **stack, unsigned int line_number);
+
+/**
+ * pop - Removes the top element of the stack
+ */
 void pop(stack_t **stack, unsigned int line_number);
+
+/**
+ * swap - Swaps the top two elements of the stack
+ */
 void swap(stack_t **stack, unsigned int line_number);
+
+/**
+ * add - Adds the top two elements of the stack
+ */
 void add(stack_t **stack, unsigned int line_number);
+
+/**
+ * sub - Subtracts the top element from the second element of the stack
+ */
 void sub(stack_t **stack, unsigned int line_number);
+
+/**
+ * _div - Divides the second element by the top element of the stack
+ */
 void _div(stack_t **stack, unsigned int line_number);
+
+/**
+ * mul - Multiplies the top two elements of the stack
+ */
 void mul(stack_t **stack, unsigned int line_number);
+
+/**
+ * mod - Computes the rest of the division of the second element by the top
+ */
 void mod(stack_t **stack, unsigned int line_number);
+
+/**
+ * pchar - Prints the char at the top of the stack
+ */
 void pchar(stack_t **stack, unsigned int line_number);
+
+/**
+ * pstr - Prints the string starting at the top of the stack
+ */
 void pstr(stack_t **stack, unsigned int line_number);
+
+/**
+ * rotl - Rotates the stack to the top
+ */
 void rotl(stack_t **stack, unsigned int line_number);
+
+/**
+ * rotr - Rotates the stack to the bottom
+ */
 void rotr(stack_t **stack, unsigned int line_number);
-
-
 
 #endif /* MONTY_H */
