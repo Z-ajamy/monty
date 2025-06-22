@@ -36,27 +36,32 @@ int main(int argc, char *argv[])
         
         command_ptr = parsing(line, linenum);
         if (!command_ptr)
-            exit (EXIT_FAILURE);
-        if (!command_ptr->command)
-            continue;
-
-
-        flag = executor(&stack, command_ptr, linenum);
-            free(command_ptr->command);
-            free(command_ptr->arg);
-            free(command_ptr);
-
-        if (!flag)
         {
             free_stack(&stack);
             free(line);
             fclose(fp);
             exit (EXIT_FAILURE);
         }
+        if (!command_ptr->command)
+        {
+            free(command_ptr);
+            continue;
+        }
+
+
+        flag = executor(&stack, command_ptr, linenum);
+        free(command_ptr->command);
+        free(command_ptr->arg);
+        free(command_ptr);
+
+        if (!flag)
+            break;
     }
 
     free_stack(&stack);
     free(line);
     fclose(fp);
+    if (!flag)
+        exit (EXIT_FAILURE);
     return 0;
 }

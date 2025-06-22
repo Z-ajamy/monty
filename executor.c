@@ -36,6 +36,7 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
 
     if(!isdigite(command_ptr->arg))
     {
+        free(command_ptr->arg);
         command_ptr->arg = NULL;
     }
     else

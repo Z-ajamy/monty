@@ -26,7 +26,7 @@ command_t *parsing(char *line, int line_number)
     command = strtok(line, " \t\n");
     if (!command || command[0] == '#')
     {
-        return (command_ptr);
+        return (NULL);
     }
 
     command_ptr->command = (char *)malloc(strlen(command) + 1);
