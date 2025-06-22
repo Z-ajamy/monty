@@ -9,7 +9,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 
 
     s = *stack;
-    if (!s)
+    if (!s || !s->next)
     {
         return;
     }
