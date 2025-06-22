@@ -2,7 +2,6 @@
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-    stack_t *s;
     int temp;
 
     if (!stack)
