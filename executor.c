@@ -54,7 +54,7 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     };
 
     /** Array of opcodes that do not require an argument */
-    instruction_t fun_no_arg[10] = {
+    instruction_t fun_no_arg[11] = {
         {"pall", pall},
         {"pint", pint},
         {"pop", pop},
@@ -64,6 +64,7 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
         {"div", _div},
         {"mul", mul},
         {"mod", mod},
+        {"pchar", pchar},
         {NULL, NULL}
     };
 
