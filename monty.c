@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
         free(command_ptr->command);
         free(command_ptr->arg);
         free(command_ptr);
+        free(g_vars.arg);
 
         /** If execution failed, stop */
         if (!flag)

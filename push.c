@@ -12,14 +12,20 @@ void push(stack_t **top, unsigned int line_number)
     stack_t *new = NULL;
     stack_t *ptr = NULL;
 
-    /** Silence unused variable warning */
-    (void)line_number;
-
     /** If stack is invalid, do nothing */
     if (!top)
         return;
 
     ptr = *top;
+
+    /** If argument is required but missing */
+    if (!g_vars.arg)
+    {
+        fprintf(stderr, "L%d: usage: push integer\n",
+            line_number);
+        g_vars.status = 1;
+        return;
+    }
 
     /** Allocate memory for the new node */
     new = (stack_t *)malloc(sizeof(stack_t));
@@ -32,7 +38,7 @@ void push(stack_t **top, unsigned int line_number)
     }
 
     /** Initialize the new node */
-    new->n = g_vars.arg;
+    new->n = atoi(g_vars.arg);
     new->prev = NULL;
     new->next = ptr;
 

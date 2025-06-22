@@ -63,11 +63,17 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     if (!isdigite(command_ptr->arg))
     {
         free(command_ptr->arg);
-        command_ptr->arg = NULL;
+        g_vars.arg = NULL;
     }
     else
     {
-        g_vars.arg = atoi(command_ptr->arg);
+        g_vars.arg = (char *)malloc(sizeof(char) * (strlen(command_ptr->arg) + 1));
+        if (!g_vars.arg)
+        {
+            fprintf(stderr, "Error: malloc failed\n");
+            return (0);
+        }
+        strcpy(g_vars.arg, command_ptr->arg);
     }
 
     /** Search for matching opcode in no-argument list */
@@ -89,14 +95,6 @@ int executor(stack_t **top, command_t *command_ptr, unsigned int linenum)
     {
         if (!strcmp(fun_with_arg[i].opcode, command_ptr->command))
         {
-            /** If argument is required but missing */
-            if (!command_ptr->arg)
-            {
-                fprintf(stderr, "L%d: usage: %s integer\n",
-                        linenum, fun_with_arg[i].opcode);
-                return (0);
-            }
-
             fun_with_arg[i].f(top, linenum);
             flag = 0;
             break;

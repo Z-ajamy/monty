@@ -60,7 +60,7 @@ typedef struct command_line
  */
 typedef struct global_vars_s
 {
-	int arg;
+	char *arg;
 	int status;
 } global_vars_t;
 
@@ -83,5 +83,7 @@ void push(stack_t **top, unsigned int line_number);
 
 /** Prints all values on the stack */
 void pall(stack_t **stack, unsigned int line_number);
+
+int isdigite(char *str);
 
 #endif /* MONTY_H */
